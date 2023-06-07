@@ -2,7 +2,6 @@ import csv
 import os
 
 
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -47,7 +46,6 @@ class Item:
             self.__name = value
         else:
             raise ValueError("Длина наименования товара превышает 10 символов")
-
 
     @classmethod
     def instantiate_from_csv(cls):
