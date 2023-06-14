@@ -18,6 +18,14 @@ def test_init(item):
     assert len(Item.all) == 1
 
 
+def test_repr(item):
+    assert repr(item) == "Item('test item', 10.0, 5)"
+
+
+def test_str(item):
+    assert str(item) == 'test item'
+
+
 def test_calculate_total_price(item):
     assert item.calculate_total_price() == 50.0
 
