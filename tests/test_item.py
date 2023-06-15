@@ -2,6 +2,7 @@
 
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 
 @pytest.fixture
@@ -9,6 +10,13 @@ def item():
     item = Item("test item", 10.0, 5)
     yield item
     Item.all = []
+
+
+@pytest.fixture
+def phone():
+    phone = Phone("test phone", 10, 5, 2)
+    yield phone
+    Phone.all = []
 
 
 def test_init(item):
@@ -24,6 +32,13 @@ def test_repr(item):
 
 def test_str(item):
     assert str(item) == 'test item'
+
+
+def test_add(item, phone):
+    assert item + phone == 10
+    assert phone + phone == 10
+
+    # with pytest.raises(TypeError):
 
 
 def test_calculate_total_price(item):
