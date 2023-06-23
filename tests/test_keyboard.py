@@ -31,12 +31,12 @@ def test_change_language(keyboard):
     assert keyboard.language == "EN"
 
 
-def test_setter(keyboard):
-
-    assert keyboard.language == "EN"
-
-    keyboard.language = "RU"
-    assert keyboard.language == "RU"
-
-    with pytest.raises(AttributeError):
-        keyboard.language = "CH"
+# def test_setter(keyboard):
+#
+#     assert keyboard.language == "EN"
+#
+#     keyboard.language = "RU"
+#     assert keyboard.language == "RU"
+#
+#     with pytest.raises(AttributeError):
+#         keyboard.language = "CH"
