@@ -1,8 +1,9 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
+import os
 
 
 @pytest.fixture
@@ -59,17 +60,19 @@ def test_item_name_setter(item):
         item.name = 'nameislongerthanten'
 
 
-# Тест на чтение данных из CSV-файла
 def test_instantiate_from_csv():
-
-    # Проверяем, что данные были успешно считаны из файла
     Item.instantiate_from_csv()
     assert Item.all[0].name == 'Смартфон'
     assert Item.all[0].price == 100
     assert Item.all[0].quantity == 1
 
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv(filename='test.csv')
 
-# Тест на преобразование строки в число
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv(filename='error_test.csv')
+
+
 def test_string_to_number():
     assert Item.string_to_number('2') == 2
     assert Item.string_to_number('3.5') == 3
